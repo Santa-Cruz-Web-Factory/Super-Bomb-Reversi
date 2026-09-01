@@ -5,8 +5,8 @@ WITH PlayerOldestMove AS (
     FROM games
     WHERE status = 'everythings_normal'
       AND (
-          (turn = 'challenger' AND challenger_id IS NOT NULL) OR 
-          (turn = 'accepter' AND accepter_id IS NOT NULL)
+          (turn = '_challenger_' AND challenger_id IS NOT NULL) OR 
+          (turn = '_accepter_' AND accepter_id IS NOT NULL)
       )
     GROUP BY player_id
 ),
@@ -43,4 +43,4 @@ RankedLeaderboard AS (
 SELECT * 
 FROM RankedLeaderboard
 LIMIT :numPlayers      -- How many records to return (e.g., :numPlayers players)
-OFFSET :skipPast    -- How many records to skip from the top (e.g., starts at row :skipPast+1)
+OFFSET :skipPast    -- How many records to skip from the top (e.g., starts at row :skipPast + 1)
